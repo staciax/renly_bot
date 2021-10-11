@@ -1,0 +1,7 @@
+*.pyc
+*.json
+*.env
+venv
+enhanced-discord.py
+.vscode
+*.exe
