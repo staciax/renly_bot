@@ -9,8 +9,9 @@ from typing import Literal
 # Third party
 # Local
 from utils.emoji import emoji_converter
+from utils.buttons import Confirm
 
-class Owner(commands.Cog, command_attrs = dict(slash_command_guilds=[840379510704046151])):
+class Owner(commands.Cog, command_attrs = dict(slash_command_guilds=[840379510704046151 , 893335017776894034 , 893335068863496192])):
     
     def __init__(self, bot):
         self.bot = bot
@@ -22,7 +23,21 @@ class Owner(commands.Cog, command_attrs = dict(slash_command_guilds=[84037951070
     @commands.command(help="logout bot")
     @commands.is_owner()
     async def logout(self, ctx):
-        await self.bot.logout()
+        embed = discord.Embed(color=0xffffff)
+        embed.set_author(name=f"{self.bot.user.name} Logout",icon_url=self.bot.user.avatar.url)
+        embed.description = f"are you sure?"
+
+        view = Confirm()
+        await ctx.send(embed=embed ,view=view)
+        await view.wait()
+        if view.value is None:
+            return
+        elif view.value:
+            print('Shuting down...')
+            await self.bot.logout()
+        else:
+            print('Cancelled...')
+
 
     @commands.command(name="bot_status",help="change bot status")
     @commands.is_owner()

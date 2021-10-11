@@ -70,11 +70,11 @@ class Moderator(commands.Cog, command_attrs = dict(slash_command=True)):
         p.embed.color = self.bot.white_color
         await p.start()
 
-    @commands.command(help="clear message")
+    @commands.command(help="purge message")
     @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
     @commands.bot_has_permissions(manage_messages=True , send_messages=True, embed_links=True)
-    async def clear(self, ctx, amount : int = commands.Option(description="Number to clear message")):
+    async def purge(self, ctx, amount : int = commands.Option(description="Number to clear message")):
         embed = discord.Embed(
             description=f" `{ctx.channel.name}`: **{amount}** messages were cleared",
             color=self.bot.white_color
@@ -95,11 +95,11 @@ class Moderator(commands.Cog, command_attrs = dict(slash_command=True)):
     #         embed.description=f"i can't cleanup messages"
     #     await ctx.reply(embed=embed , ephemeral=True)
 
-    @commands.command(help="Cleanup the messages")
+    @commands.command(help="clear the messages")
     @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
     @commands.bot_has_permissions(manage_messages=True , send_messages=True, embed_links=True)
-    async def clean(
+    async def clear(
         self,
         ctx,
         type: Literal["message without pinned","bot","attachments","embed","custom emoji","all"] = commands.Option(description="choose type to clean message"),
@@ -160,7 +160,7 @@ class Moderator(commands.Cog, command_attrs = dict(slash_command=True)):
     @commands.guild_only()
     @commands.has_permissions(manage_messages=True)
     @commands.bot_has_permissions(manage_messages=True , send_messages=True, embed_links=True)
-    async def clean_member(
+    async def clear_member(
         self,
         ctx,
         member:discord.Member = commands.Option(description="Mention member"),

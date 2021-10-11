@@ -124,4 +124,4 @@ if __name__ == "__main__":
             bot.load_extension(f'cogs.{file[:-3]}')
 
 bot.loop.run_until_complete(create_db_pool())
-bot.run(bot.token , reconnect=True)
+bot.run(bot.token) #reconnect=True

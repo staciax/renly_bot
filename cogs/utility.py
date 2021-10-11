@@ -27,7 +27,7 @@ class utility(commands.Cog, command_attrs = dict(slash_command=True)):
             return await ctx.reply(embed=embed, ephemeral=True)
         
         self.bot.afk_user[ctx.author.id] = reason
-        embed.description = f"**{ctx.author}** I have set your afk: {reason}"
+        embed.description = f"**{ctx.author.name}** I have set your afk: {reason}"
 
         await ctx.send(embed=embed)
 
