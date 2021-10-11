@@ -21,37 +21,35 @@ class Events(commands.Cog, command_attrs = dict(slash_command=True)):
         self.sniped = {}
         self.sniped_embed = {}
     
-    @commands.Cog.listener()
-    async def on_command(self, ctx):
-        self.bot.commands_used = self.bot.commands_used +1
+    # @commands.Cog.listener()
+    # async def on_command(self, ctx):
+    #     self.bot.commands_used = self.bot.commands_used +1
         
-        channel = self.bot.get_channel(844462710526836756)
+    #     channel = self.bot.get_channel(844462710526836756)
         
-        server = ctx.guild
-        channel = ctx.channel
-        owner = ctx.guild.owner
-        author = ctx.author
-        message = ctx.message
-        
-        colors = 0xffffff
-        
-        embed = discord.Embed(title=f"{ctx.command} has been used", color=self.bot.white_color, timestamp=discord.utils.utcnow())
+    #     server = ctx.guild
+    #     channel = ctx.channel
+    #     owner = ctx.guild.owner
+    #     author = ctx.author
+    #     message = ctx.message
+                
+    #     embed = discord.Embed(title=f"{ctx.command} has been used", color=self.bot.white_color, timestamp=discord.utils.utcnow())
 
-        embed.description=f"""
-        Server:
-        Name: `{server}`
-        ID: `{server.id}`
-        Owner: `{owner}`
+    #     embed.description=f"""
+    #     Server:
+    #     Name: `{server}`
+    #     ID: `{server.id}`
+    #     Owner: `{owner}`
 
-        User:
-        Name: `{author}`
-        hannel: `{channel}`
-        URL: [Click here]({message.jump_url}/ 'Jump URL')
-        Content:
-        `{message.content}`
-        """
+    #     User:
+    #     Name: `{author}`
+    #     hannel: `{channel}`
+    #     URL: [Click here]({message.jump_url}/ 'Jump URL')
+    #     Content:
+    #     `{message.content}`
+    #     """
 
-        await channel.send(embed=embed)
+    #     await channel.send(embed=embed)
                 
     @commands.Cog.listener()
     async def on_message(self, message):

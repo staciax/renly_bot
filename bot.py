@@ -86,7 +86,7 @@ bot = RenlyBot(intents=discord.Intents(
     invites=True,  # invite create/delete
     emojis=True,  # emoji update
     bans=True  # member ban/unban
-),help_command = None, case_insensitive = True , slash_commands= True) #, slash_command_guilds=[840379510704046151]
+),help_command = None, case_insensitive = True , slash_commands= True, slash_command_guilds=[840379510704046151]) #, slash_command_guilds=[840379510704046151]
  
 # botdata = {
 #     "token": "this token",
