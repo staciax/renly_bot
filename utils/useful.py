@@ -21,7 +21,10 @@ class RenlyEmbed(discord.Embed):
     @classmethod
     def default(cls, ctx: commands.Context, **kwargs) -> "RenlyEmbed":
         instance = cls(**kwargs)
-        instance.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.display_avatar)
+        if ctx.author.display_avatar is not None:
+            instance.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.display_avatar)
+        else:
+            instance.set_footer(text=f"Requested by {ctx.author}")
         return instance
 
     @classmethod

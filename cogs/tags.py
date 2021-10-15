@@ -180,7 +180,10 @@ class Tags(commands.Cog, command_attrs = dict(slash_command=True)):
 
         if rows:
             p = TagPages(entries=rows, ctx=ctx , per_page=10)
-            p.embed.set_author(name=member.display_name, icon_url=member.display_avatar.url)
+            if member.display_avatar.url is not None:
+                p.embed.set_author(name=member.display_name, icon_url=member.display_avatar.url)
+            else:
+                p.embed.set_author(name=member.display_name)
             p.embed.color = self.bot.white_color
             await p.start()
         else:
@@ -230,7 +233,10 @@ class Tags(commands.Cog, command_attrs = dict(slash_command=True)):
         embed.set_footer(text='Tag created at')
 
         user = self.bot.get_user(owner_id) or (await self.bot.fetch_user(owner_id))
-        embed.set_author(name=str(user), icon_url=user.display_avatar.url)
+        if user.display_avatar.url is not None:
+            embed.set_author(name=str(user), icon_url=user.display_avatar.url)
+        else:
+            embed.set_author(name=str(user))
 
         embed.add_field(name='Owner', value=f'<@{owner_id}>')
         embed.add_field(name='Uses', value=record['use'])

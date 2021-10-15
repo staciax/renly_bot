@@ -145,7 +145,7 @@ class Infomation(commands.Cog, command_attrs = dict(slash_command=True)):
         for name , value , inline in fields:
             embed.add_field(name=name , value=value , inline=inline)
 
-        if member.avatar:
+        if member.avatar.url is not None:
             embed.set_thumbnail(url=member.avatar.url)
             item = discord.ui.Button(style=style, label="Avatar URL", url=member.avatar.url)
             view.add_item(item=item)
@@ -240,7 +240,7 @@ class Infomation(commands.Cog, command_attrs = dict(slash_command=True)):
             dominant_color = self.bot.white_color
 
         embed = discord.Embed(title = f"{member.name}'s Avatar:", color=dominant_color)
-        if member.avatar:
+        if member.avatar.url is not None:
             embed.set_image(url = member.avatar.url)
             #start_view_button
             view = discord.ui.View()
@@ -409,7 +409,10 @@ class Infomation(commands.Cog, command_attrs = dict(slash_command=True)):
 
         #embed
         embed = discord.Embed(color=member.colour)
-        embed.set_author(name=member , icon_url=member.avatar.url)
+        if member.display_avatar.url is not None:
+            embed.set_author(name=member , icon_url=member.display_avatar.url)
+        else:
+            embed.set_author(name=member)
         embed.description = f"{d} Desktop\n{m} Mobile\n{w} Web"
 
         await ctx.send(embed=embed , ephemeral=True)

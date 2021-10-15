@@ -42,7 +42,10 @@ class utility(commands.Cog, command_attrs = dict(slash_command=True)):
         member = member or ctx.author
 
         webhook = await ctx.channel.create_webhook(name=member.display_name)
-        await webhook.send(message, username=member.display_name, avatar_url=member.avatar.url)
+        if member.display_avatar.url is not None:
+            await webhook.send(message, username=member.display_name, avatar_url=member.display_avatar.url)
+        else:
+            await webhook.send(message, username=member.display_name)
         webhooks = await ctx.channel.webhooks()
         for webhook in webhooks:
             await webhook.delete()

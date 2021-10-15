@@ -44,7 +44,10 @@ class Moderator(commands.Cog, command_attrs = dict(slash_command=True)):
             return await ctx.send(embed=discord.Embed(description="you can't kick bot",color=self.bot.white_color))
         
         embed = discord.Embed(description=f'{member} has been banned from server\nReason: {reason}', timestamp=datetime.now(timezone.utc),color=0xffffff)
-        embed.set_footer(text=f"Banned by {ctx.author}" , icon_url = ctx.author.avatar.url)
+        if ctx.author.display_avatar.url is not None: 
+            embed.set_footer(text=f"Banned by {ctx.author}" , icon_url = ctx.author.display_avatar.url)
+        else:
+            embed.set_footer(text=f"Banned by {ctx.author}")
 
         embedprm = discord.Embed(description="`Bot doesn't have enough permission to ban someone.`",color=self.bot.white_color)
        
@@ -251,7 +254,10 @@ class Moderator(commands.Cog, command_attrs = dict(slash_command=True)):
         role = discord.utils.get(ctx.guild.roles, name="Mute")
 
         embed = discord.Embed(description=f"You has been unmute : `{member}`",color=0xffffff)
-        embed.set_footer(text=f"Unmuted by {ctx.author}", icon_url = ctx.author.avatar.url)
+        if ctx.author.display_avatar.url is not None:
+            embed.set_footer(text=f"Unmuted by {ctx.author}", icon_url = ctx.author.display_avatar.url)
+        else:
+            embed.set_footer(text=f"Unmuted by {ctx.author}")
 
         await member.remove_roles(role)
         await ctx.send(embed=embed)
